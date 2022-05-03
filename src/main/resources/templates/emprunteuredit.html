@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/emprunteurcreate}" th:object="${emprunteurForm}" method="post">
+    <input type="hidden" field="*{id}"/>
+    <table>
+        <tr>
+            <td><label>nom</label></td>
+            <td><input type="text" th:field="*{nom}"/></td>
+            <td id="${#fields.hasErrors('nom')}" th:errors="*{nom}">nom invalide</td>
+        </tr>
+        <tr>
+            <td><label>prenom</label></td>
+            <td><input type="text" th:field="*{prenom}"/></td>
+            <td id="${#fields.hasErrors('prenom')}" th:errors="*{prenom}">prenom invalide</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Sauvegarder"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
