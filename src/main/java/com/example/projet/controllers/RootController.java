@@ -72,7 +72,5 @@ public class RootController {
         return "redirect:/emprunteurcreate/{id}";
     }
 
-    @GetMapping("/emprunteurcreate")
-
 
 }

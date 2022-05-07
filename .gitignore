@@ -34,3 +34,5 @@ build/
 
 ### Compiled class file ###
 *.class
+
+node_modules/
