@@ -1,9 +1,11 @@
 import React from "react";
+import Utilisateurs from "./Utilisateurs";
 
 
-const HomePage = () => (
+const HomePage = ({utilisateurs}) => (
     <div>
         <h1>Veuillez vous loggez avec un compte :</h1>
+        <Utilisateurs utilisateurs={utilisateurs}/>
     </div>
 )
 
