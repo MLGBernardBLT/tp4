@@ -6,6 +6,7 @@ import HomePage from "./component/HomePage";
 import PageNotFound from "./component/PageNotFound";
 import Utilisateurs from "./component/Utilisateurs";
 import 'bootstrap/dist/css/bootstrap.css'
+import Connexion from "./component/Connexion";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage utilisateurs={utilisateurs}/>} />
+                <Route path="/connexion" element={<Connexion />} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>
         </Router>
