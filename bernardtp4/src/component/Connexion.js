@@ -1,32 +1,37 @@
 import React from "react";
-import Button from "./Button";
+import {Link} from "react-router-dom";
 
 
 
 const Connexion = ({utilisateur}) => {
     const typeUtilisateur = utilisateur.typeUtilisateur;
-    const onClickAjoutUtilisateur = () => {
-    }
-
-    const onClickAjoutDocument = () => {
-    }
 
     return (
         <div>
             <h3>Bienvenue {utilisateur.prenom}, {utilisateur.nom}</h3>
-            {typeUtilisateur === "admin" &&
-                <Button color="blue" text="Ajout Utilisateur" onClick={onClickAjoutUtilisateur}/>
+            {
+                typeUtilisateur === "admin" &&
+                <Link color="blue" to="/createEmprunteur">Ajout utilisateur</Link>
             }
             {
                 typeUtilisateur === "admin" &&
-                <Button color="blue" text="Ajout document" onClick={onClickAjoutDocument} />
+                <Link color="blue" to="/createLivre">Ajout Livre</Link>
             }
-            {   typeUtilisateur === "emprunteur" &&
-                <Button color="blue" text="Faire emprunt" onClick={onClickAjoutUtilisateur}/>
+            {
+                typeUtilisateur === "admin" &&
+                <Link color="blue" to="/createCD">Ajout CD</Link>
+            }
+            {
+                typeUtilisateur === "admin" &&
+                <Link color="blue" to="/createDVD">Ajout DVD</Link>
             }
             {
                 typeUtilisateur === "emprunteur" &&
-                <Button color="blue" text="Retourner emprunt" onClick={onClickAjoutDocument} />
+                <Link color="blue" to="/createEmprunt">Faire un emprunt</Link>
+            }
+            {
+                typeUtilisateur === "emprunteur" &&
+                <Link to="/createRetour">Retourner un livre</Link>
             }
 
 

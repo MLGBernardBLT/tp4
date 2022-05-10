@@ -7,6 +7,12 @@ import PageNotFound from "./component/PageNotFound";
 import Utilisateurs from "./component/Utilisateurs";
 import 'bootstrap/dist/css/bootstrap.css'
 import Connexion from "./component/Connexion";
+import CreateEmprunteur from "./component/CreateEmprunteur";
+import CreateLivre from "./component/CreateLivre";
+import CreateDVD from "./component/CreateDVD";
+import CreateCD from "./component/CreateCD";
+import CreateEmprunt from "./component/CreateEmprunt";
+import CreateRetour from "./component/CreateRetour";
 
 
 function App() {
@@ -35,7 +41,12 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage utilisateurs={utilisateurs}/>} />
-                <Route path="/connexion" element={<Connexion />} />
+                <Route path="/createEmprunteur" element={<CreateEmprunteur />} />
+                <Route path="/createLivre" element={<CreateLivre />} />
+                <Route path="/createDVD" element={<CreateDVD />} />
+                <Route path="/createCD" element={<CreateCD />} />
+                <Route path="/createEmprunt" element={<CreateEmprunt />} />
+                <Route path="/createRetour" element={<CreateRetour />} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>
         </Router>
