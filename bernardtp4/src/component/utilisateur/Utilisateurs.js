@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Utilisateur from './Utilisateur'
-import Button from "./Button";
-import Connexion from "./Connexion";
+import Button from "../Button";
+import Connexion from "../Connexion";
 
 const Utilisateurs = ({utilisateurs}) => {
     return (

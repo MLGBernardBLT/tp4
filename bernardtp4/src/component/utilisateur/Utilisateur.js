@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Connexion from "./Connexion"
+import Button from "../Button";
+import Connexion from "../Connexion"
 import {useState} from "react";
 
 const Utilisateur = ({utilisateur}) => {

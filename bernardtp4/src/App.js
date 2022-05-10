@@ -4,18 +4,19 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css';
 import HomePage from "./component/HomePage";
 import PageNotFound from "./component/PageNotFound";
-import Utilisateurs from "./component/Utilisateurs";
+import Utilisateurs from "./component/utilisateur/Utilisateurs";
 import 'bootstrap/dist/css/bootstrap.css'
 import Connexion from "./component/Connexion";
-import CreateEmprunteur from "./component/CreateEmprunteur";
-import CreateLivre from "./component/CreateLivre";
-import CreateDVD from "./component/CreateDVD";
-import CreateCD from "./component/CreateCD";
-import CreateEmprunt from "./component/CreateEmprunt";
-import CreateRetour from "./component/CreateRetour";
+import CreateEmprunteur from "./component/form/CreateEmprunteur";
+import CreateLivre from "./component/form/CreateLivre";
+import CreateDVD from "./component/form/CreateDVD";
+import CreateCD from "./component/form/CreateCD";
+import CreateEmprunt from "./component/form/CreateEmprunt";
+import CreateRetour from "./component/form/CreateRetour";
 
 
 function App() {
+    const [id, setId] = useState(3)
     const [utilisateurs, setUtilisateurs] = useState(
         [
             {
@@ -32,6 +33,17 @@ function App() {
             }
         ]
     )
+
+    const addUtilisateur = (nom, prenom) => {
+        let temp = id;
+        setId(++temp);
+        setUtilisateurs([...utilisateurs, {
+            'id' :id,
+            'typeUtilisateur' : 'emprunteur',
+            'nom' : nom,
+            'prenom' : prenom
+        }]);
+    }
   return (
     <div>
         <header className="container">
@@ -41,7 +53,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage utilisateurs={utilisateurs}/>} />
-                <Route path="/createEmprunteur" element={<CreateEmprunteur />} />
+                <Route path="/createEmprunteur" element={<CreateEmprunteur onAdd={addUtilisateur} />} />
                 <Route path="/createLivre" element={<CreateLivre />} />
                 <Route path="/createDVD" element={<CreateDVD />} />
                 <Route path="/createCD" element={<CreateCD />} />

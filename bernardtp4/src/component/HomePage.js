@@ -1,5 +1,5 @@
 import React from "react";
-import Utilisateurs from "./Utilisateurs";
+import Utilisateurs from "./utilisateur/Utilisateurs";
 
 
 const HomePage = ({utilisateurs}) => (
