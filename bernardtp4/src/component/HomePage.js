@@ -2,10 +2,10 @@ import React from "react";
 import Utilisateurs from "./utilisateur/Utilisateurs";
 
 
-const HomePage = ({utilisateurs}) => (
+const HomePage = ({utilisateurs, onClick}) => (
     <div>
         <h1>Veuillez vous loggez avec un compte :</h1>
-        <Utilisateurs utilisateurs={utilisateurs}/>
+        <Utilisateurs utilisateurs={utilisateurs} onClick={onClick}/>
     </div>
 )
 

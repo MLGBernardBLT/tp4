@@ -3,8 +3,9 @@ import {Link} from "react-router-dom";
 
 
 
-const Connexion = ({utilisateur}) => {
+const Connexion = ({utilisateur, onClick}) => {
     const typeUtilisateur = utilisateur.typeUtilisateur;
+    console.log(onClick)
 
     return (
         <div>
@@ -27,12 +28,13 @@ const Connexion = ({utilisateur}) => {
             }
             {
                 typeUtilisateur === "emprunteur" &&
-                <Link color="blue" to="/createEmprunt">Faire un emprunt</Link>
+                <Link to="/getDocuments" onClick={() => onClick(utilisateur.id)}>Voir les documents disponibles</Link>
             }
             {
                 typeUtilisateur === "emprunteur" &&
-                <Link to="/createRetour">Retourner un livre</Link>
+                <Link color="blue" to="/emprunts">Voir vos emprunts</Link>
             }
+
 
 
         </div>

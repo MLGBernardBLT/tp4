@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 import Utilisateur from './Utilisateur'
-import Button from "../Button";
-import Connexion from "../Connexion";
 
-const Utilisateurs = ({utilisateurs}) => {
+const Utilisateurs = ({utilisateurs, onClick}) => {
     return (
         <>
             <div className="container">
@@ -20,7 +18,7 @@ const Utilisateurs = ({utilisateurs}) => {
                             </thead>
                             <tbody>
                                 {utilisateurs.map((utilisateur) => (
-                                    <Utilisateur key={utilisateur.id} utilisateur={utilisateur}/>
+                                    <Utilisateur key={utilisateur.id} utilisateur={utilisateur} onClick={onClick}/>
                                 ))}
                             </tbody>
                         </table>
