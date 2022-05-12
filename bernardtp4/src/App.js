@@ -9,13 +9,12 @@ import CreateEmprunteur from "./component/form/CreateEmprunteur";
 import CreateLivre from "./component/form/CreateLivre";
 import CreateDVD from "./component/form/CreateDVD";
 import CreateCD from "./component/form/CreateCD";
-import CreateEmprunt from "./component/form/CreateEmprunt";
-import CreateRetour from "./component/form/CreateRetour";
 import Documents from "./component/documents/Documents";
 
 
 function App() {
-    const [id, setId] = useState(3)
+    const [idUtilisateur, setIdUtilisateur] = useState(3)
+    const [idLivre, setIdLivre] = useState(3)
     const [utilisateurs, setUtilisateurs] = useState(
         [
             {
@@ -52,7 +51,8 @@ function App() {
                 editeur: 'Moi aussi',
                 anneePublication: '2002-01-20',
                 genre: 'roman',
-                nbrePage: 255
+                nbrePage: 255,
+                exemplaires: 2
             },
             {
                 id : 2,
@@ -61,20 +61,49 @@ function App() {
                 auteur: 'Moi',
                 editeur: 'Moi aussi',
                 anneePublication: '2002-02-20',
-                genre: 'film'
+                genre: 'film',
+                exemplaires: 1
             }
         ]
     )
 
     const addUtilisateur = (nom, prenom) => {
-        let temp = id;
-        setId(++temp);
+        let temp = idUtilisateur;
+        setIdUtilisateur(++temp);
         setUtilisateurs([...utilisateurs, {
-            'id' :id,
+            'id' :idUtilisateur,
             'typeUtilisateur' : 'emprunteur',
             'nom' : nom,
             'prenom' : prenom
         }]);
+    }
+
+    const addLivre = (titre, auteur, editeur, anneePublication, genre, nbrePage, exemplaires) => {
+        let temp = idLivre;
+        setIdLivre(++temp);
+
+        let counter = 0;
+        console.log(exemplaires)
+        documents.map((document) =>
+            document.titre === titre && document.auteur === auteur &&
+                document.anneePublication === anneePublication && document.genre === genre &&
+                document.nbrePage === nbrePage
+            ? document.exemplaires = Number(document.exemplaires) + Number(exemplaires)
+            : counter++
+        )
+        if(counter === documents.length){
+            setDocuments([...documents, {
+                'id': idLivre,
+                'typeDocument': 'livre',
+                'titre': titre,
+                'auteur': auteur,
+                'editeur': editeur,
+                'anneePublication': anneePublication,
+                'genre': genre,
+                'nbrePage': nbrePage,
+                'exemplaires': exemplaires
+            }])
+        }
     }
 
     const getUtilisateur = (id) => {
@@ -93,11 +122,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage utilisateurs={utilisateurs} onClick={getUtilisateur}/>} />
                 <Route path="/createEmprunteur" element={<CreateEmprunteur onAdd={addUtilisateur} />} />
-                <Route path="/createLivre" element={<CreateLivre />} />
+                <Route path="/createLivre" element={<CreateLivre onAdd={addLivre}/>} />
                 <Route path="/createDVD" element={<CreateDVD />} />
                 <Route path="/createCD" element={<CreateCD />} />
-                <Route path="/createEmprunt" element={<CreateEmprunt />} />
-                <Route path="/createRetour" element={<CreateRetour />} />
                 <Route path="/getDocuments" element={<Documents documents={documents} utilisateur={utilisateurTrouver}/>} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>

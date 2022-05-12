@@ -7,8 +7,8 @@ const Document = ({document, utilisateur}) => {
     const typeDocument = document.typeDocument;
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(utilisateur)
-        navigate("/", {from: "App"})
+        // console.log(utilisateur)
+        // navigate("/emprunts", {from: "App"})
     }
     return (
         <tr>
@@ -19,6 +19,7 @@ const Document = ({document, utilisateur}) => {
             <td>{document.genre}</td>
             <td>{document.typeDocument}</td>
             <td>{typeDocument === "livre" && document.nbrePage}</td>
+            <td>{document.exemplaires}</td>
             <td><Button color="blue" text="Emprunter le !" onClick={onSubmit} /> </td>
         </tr>
     )

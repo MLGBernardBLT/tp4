@@ -19,6 +19,7 @@ const Documents = ({documents, utilisateur}) => {
                                 <th scope="col">Genre</th>
                                 <th scope="col">Type de documents</th>
                                 <th scope="col">Nombre de pages</th>
+                                <th scope="col">Nombre d'exemplaires</th>
                             </tr>
                             </thead>
                             <tbody>
