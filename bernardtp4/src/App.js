@@ -14,7 +14,6 @@ import Documents from "./component/documents/Documents";
 
 function App() {
     const [idUtilisateur, setIdUtilisateur] = useState(3)
-    const [idLivre, setIdLivre] = useState(3)
     const [utilisateurs, setUtilisateurs] = useState(
         [
             {
@@ -67,6 +66,8 @@ function App() {
         ]
     )
 
+    const [idDocument, setIdDocument] = useState(3)
+
     const addUtilisateur = (nom, prenom) => {
         let temp = idUtilisateur;
         setIdUtilisateur(++temp);
@@ -79,8 +80,9 @@ function App() {
     }
 
     const addLivre = (titre, auteur, editeur, anneePublication, genre, nbrePage, exemplaires) => {
-        let temp = idLivre;
-        setIdLivre(++temp);
+        let temp = idDocument;
+        console.log(documents)
+        setIdDocument(++temp);
 
         let counter = 0;
         console.log(exemplaires)
@@ -93,7 +95,7 @@ function App() {
         )
         if(counter === documents.length){
             setDocuments([...documents, {
-                'id': idLivre,
+                'id': idDocument,
                 'typeDocument': 'livre',
                 'titre': titre,
                 'auteur': auteur,
@@ -101,6 +103,32 @@ function App() {
                 'anneePublication': anneePublication,
                 'genre': genre,
                 'nbrePage': nbrePage,
+                'exemplaires': exemplaires
+            }])
+        }
+    }
+
+    const addCD = (titre, auteur, editeur, anneePublication, genre, exemplaires) => {
+        let temp = idDocument;
+        console.log(documents)
+        setIdDocument(++temp);
+
+        let counter = 0;
+        documents.map((document) =>
+            document.titre === titre && document.auteur === auteur &&
+            document.anneePublication === anneePublication && document.genre === genre
+                ? document.exemplaires = Number(document.exemplaires) + Number(exemplaires)
+                : counter++
+        )
+        if(counter === documents.length){
+            setDocuments([...documents, {
+                'id': idDocument,
+                'typeDocument': 'cd',
+                'titre': titre,
+                'auteur': auteur,
+                'editeur': editeur,
+                'anneePublication': anneePublication,
+                'genre': genre,
                 'exemplaires': exemplaires
             }])
         }
@@ -124,7 +152,7 @@ function App() {
                 <Route path="/createEmprunteur" element={<CreateEmprunteur onAdd={addUtilisateur} />} />
                 <Route path="/createLivre" element={<CreateLivre onAdd={addLivre}/>} />
                 <Route path="/createDVD" element={<CreateDVD />} />
-                <Route path="/createCD" element={<CreateCD />} />
+                <Route path="/createCD" element={<CreateCD onAdd={addCD}/>} />
                 <Route path="/getDocuments" element={<Documents documents={documents} utilisateur={utilisateurTrouver}/>} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>

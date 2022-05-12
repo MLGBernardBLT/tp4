@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Document from './Document'
 
 const Documents = ({documents, utilisateur}) => {
-    console.log(utilisateur)
     return (
         <>
             <div className="container">

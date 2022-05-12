@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 
 const Connexion = ({utilisateur, onClick}) => {
     const typeUtilisateur = utilisateur.typeUtilisateur;
-    console.log(onClick)
 
     return (
         <div>
@@ -34,9 +33,6 @@ const Connexion = ({utilisateur, onClick}) => {
                 typeUtilisateur === "emprunteur" &&
                 <Link color="blue" to="/emprunts">Voir vos emprunts</Link>
             }
-
-
-
         </div>
     );
 }
