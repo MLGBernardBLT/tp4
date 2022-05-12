@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Document from './Document'
+import {Link} from "react-router-dom";
 
 const Documents = ({documents, utilisateur}) => {
     return (
@@ -8,6 +9,7 @@ const Documents = ({documents, utilisateur}) => {
                 <div className="row">
                     <div className="col-12">
                         <p>{utilisateur.prenom} {utilisateur.nom}</p>
+                        <Link to="/">Retour à l'accueil</Link>
                         <table className="table">
                             <thead>
                             <tr>

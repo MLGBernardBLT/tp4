@@ -116,7 +116,8 @@ function App() {
         let counter = 0;
         documents.map((document) =>
             document.titre === titre && document.auteur === auteur &&
-            document.anneePublication === anneePublication && document.genre === genre
+            document.anneePublication === anneePublication && document.genre === genre &&
+            document.typeDocument === 'cd'
                 ? document.exemplaires = Number(document.exemplaires) + Number(exemplaires)
                 : counter++
         )
@@ -124,6 +125,33 @@ function App() {
             setDocuments([...documents, {
                 'id': idDocument,
                 'typeDocument': 'cd',
+                'titre': titre,
+                'auteur': auteur,
+                'editeur': editeur,
+                'anneePublication': anneePublication,
+                'genre': genre,
+                'exemplaires': exemplaires
+            }])
+        }
+    }
+
+    const addDVD = (titre, auteur, editeur, anneePublication, genre, exemplaires) => {
+        let temp = idDocument;
+        console.log(documents)
+        setIdDocument(++temp);
+
+        let counter = 0;
+        documents.map((document) =>
+            document.titre === titre && document.auteur === auteur &&
+            document.anneePublication === anneePublication && document.genre === genre &&
+            document.typeDocument === 'dvd'
+                ? document.exemplaires = Number(document.exemplaires) + Number(exemplaires)
+                : counter++
+        )
+        if(counter === documents.length){
+            setDocuments([...documents, {
+                'id': idDocument,
+                'typeDocument': 'dvd',
                 'titre': titre,
                 'auteur': auteur,
                 'editeur': editeur,
@@ -143,7 +171,7 @@ function App() {
   return (
     <div>
         <header className="container">
-            <h1>Bibliothèque JavaTown</h1>
+            <h1 className="text-center">Bibliothèque JavaTown</h1>
         </header>
 
         <Router>
@@ -151,7 +179,7 @@ function App() {
                 <Route path="/" element={<HomePage utilisateurs={utilisateurs} onClick={getUtilisateur}/>} />
                 <Route path="/createEmprunteur" element={<CreateEmprunteur onAdd={addUtilisateur} />} />
                 <Route path="/createLivre" element={<CreateLivre onAdd={addLivre}/>} />
-                <Route path="/createDVD" element={<CreateDVD />} />
+                <Route path="/createDVD" element={<CreateDVD onAdd={addDVD}/>} />
                 <Route path="/createCD" element={<CreateCD onAdd={addCD}/>} />
                 <Route path="/getDocuments" element={<Documents documents={documents} utilisateur={utilisateurTrouver}/>} />
                 <Route path="*" element={<PageNotFound/>} />
