@@ -2,7 +2,15 @@ import React, {useState} from "react";
 import Document from './Document'
 import {Link} from "react-router-dom";
 
-const Documents = ({documents, utilisateur}) => {
+const Documents = (props) => {
+    const [utilisateur, setUtilisateur] = useState(props.utilisateur)
+    const [documents, setDocuments] = useState(props.documents)
+
+    React.useEffect(() => {
+        setUtilisateur(props.utilisateur)
+        setDocuments(props.documents)
+    }, [props.utilisateur, props.documents])
+
     return (
         <>
             <div className="container">

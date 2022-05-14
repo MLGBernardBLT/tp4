@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css';
 import HomePage from "./component/HomePage";
@@ -10,6 +10,7 @@ import CreateLivre from "./component/form/CreateLivre";
 import CreateDVD from "./component/form/CreateDVD";
 import CreateCD from "./component/form/CreateCD";
 import Documents from "./component/documents/Documents";
+import Emprunts from "./component/documents/Emprunts";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             {
                 id : 1,
                 typeDocument: 'livre',
+                idEmprunt: 1,
                 titre: 'Pokemon la nouvelle aventure',
                 auteur: 'Moi',
                 editeur: 'Moi aussi',
@@ -56,6 +58,7 @@ function App() {
             {
                 id : 2,
                 typeDocument: 'cd',
+                idEmprunt: 0,
                 titre: 'Pokemon movie',
                 auteur: 'Moi',
                 editeur: 'Moi aussi',
@@ -67,6 +70,10 @@ function App() {
     )
 
     const [idDocument, setIdDocument] = useState(3)
+
+    useEffect(() => {
+
+    }, [])
 
     const addUtilisateur = (nom, prenom) => {
         let temp = idUtilisateur;
@@ -181,7 +188,8 @@ function App() {
                 <Route path="/createLivre" element={<CreateLivre onAdd={addLivre}/>} />
                 <Route path="/createDVD" element={<CreateDVD onAdd={addDVD}/>} />
                 <Route path="/createCD" element={<CreateCD onAdd={addCD}/>} />
-                <Route path="/getDocuments" element={<Documents documents={documents} utilisateur={utilisateurTrouver}/>} />
+                <Route path="/documents" element={<Documents documents={documents} utilisateur={utilisateurTrouver}/>} />
+                <Route path="/emprunts" element={<Emprunts utilisateur={utilisateurTrouver}/>} />
                 <Route path="*" element={<PageNotFound/>} />
             </Routes>
         </Router>

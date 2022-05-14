@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
 
 
-const Connexion = ({utilisateur, onClick}) => {
+const Connexion = (props) => {
+    const [utilisateur, setUtilisateur] = useState(props.utilisateur)
+
+    React.useEffect(() => {
+        setUtilisateur(props.utilisateur)
+    }, [props.utilisateur])
+
     const typeUtilisateur = utilisateur.typeUtilisateur;
 
     return (
@@ -27,11 +33,11 @@ const Connexion = ({utilisateur, onClick}) => {
             }
             {
                 typeUtilisateur === "emprunteur" &&
-                <Link to="/getDocuments" onClick={() => onClick(utilisateur.id)}>Voir les documents disponibles</Link>
+                <Link to="/documents" onClick={() => props.onClick(utilisateur.id)}>Voir les documents disponibles</Link>
             }
             {
                 typeUtilisateur === "emprunteur" &&
-                <Link color="blue" to="/emprunts">Voir vos emprunts</Link>
+                <Link to="/emprunts" onClick={() => props.onClick(utilisateur.id)}>Voir vos emprunts</Link>
             }
         </div>
     );
